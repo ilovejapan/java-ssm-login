@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ajax</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    
+    <script type="text/javascript" src="jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+    
+    	/* alert("hello ajax"); */
+    
+    	function sendAjax(){
+    		
+    		var name = $("#username").val();
+    		var msg = $("#message").val();
+    		var div = $("#div");
+    		
+    		alert("try ajax");
+    		
+    		$.ajax({
+    			
+    			url:"./ajax.do",
+    			type:"PSOT",
+    			data:{"username":name},
+    			/* async:false, */
+    			/* dataType:"json", */
+    			/* contentType:"application/json;charset=utf-8", */
+    			success:function(data,textStatus,jqXHR){
+    				alert("success");
+    				alert(data.prototype);
+    				alert(data.msg);
+    				/* alert("status : "+textStatus+" xhr : "+jqXHR); */
+    				
+    				/* var json = data;
+    				div.html("");
+    				
+    				for(var i=0;i<json.length;i++){
+    					div.append("<div>"+json[i].password+"</div>");
+    				} */
+    			},
+    			error:function(){
+    				alert("error : try again");
+    			}
+    			
+    		});
+    		
+/*     		resp.done(function(data){
+    			alert("success");
+    			alert(data.prototype);
+    		});
+    		
+    		resp.fail(function(jqXHR,textStatus){
+    			alert("request failed : "+textStatus);
+    		}); */
+    	}
+    </script>
+
+  </head>
+  
+  <body>
+    This is ajax HTML page. <br>
+    ${message}
+    
+    <br>
+    <!-- <input type="button" value="test" onclick="sendAjax()" /> -->
+    <button id="btn" onclick="sendAjax()"></button>
+    <br>
+    <input id="username" name="username" type="text" />
+    <br>
+    <input id="message" name="message" type="text">
+    <br>
+    <div id="div"></div>
+  </body>
+</html>
